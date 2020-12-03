@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+<!--	第一节课-->
+    <!-- 扫描注解-->
+<!--	<bean id="SpringTest" class="com.controller.SpringController"></bean>-->
+<!--	 <bean id="HandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">-->
+<!--		 <property name="urlMap" >-->
+<!--			 <map>-->
+<!--				 <entry key="Test" value-ref="SpringTest"></entry>-->
+<!--			 </map>-->
+<!--		 </property>-->
+<!--	 </bean>-->
+<!--	<bean id="HandlerAdapter" class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean>-->
+<!--	<bean id="ViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+<!--		<property name="prefix" value=""></property>-->
+<!--		<property name="suffix" value=""></property>-->
+<!--	</bean>-->
+	<!-- 注解驱动 -->
+	<!-- org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping -->
+	<!-- org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter -->
+
+<!--	第二节课-->
+	<!-- 注解的驱动扫描 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<!-- 指定Controller的扫描位置 -->
+	<context:component-scan base-package="com.controller"></context:component-scan>
+	<mvc:resources location="/static/" mapping="/static/**"></mvc:resources>
+
+</beans>

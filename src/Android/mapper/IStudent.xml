@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Android.mapper.IStudent">
+
+
+    <select id="selectALL" resultType="Android.pojo.Student" parameterType="Android.pojo.Student">
+        select * from student
+        <where>
+            <if test="stu.id != null and stu.id !=0">
+                and id=#{stu.id}
+            </if>
+            <if test="stu.code !=null and stu.code !=''">
+                and code=#{stu.code}
+            </if>
+            <if test="stu.name !=null and stu.name !=''">
+                <bind name="stu.name" value="'%'+stu.name+'%'"/>
+                and name like #{stu.name}
+            </if>
+            <if test="stu.age !=null and stu.age !=0">
+                and age=#{stu.age}
+            </if>
+            <if test="stu.cid !=null and stu.cid !=0">
+                and cid=#{stu.cid}
+            </if>
+            <if test="stu.sex !=null and stu.sex !=0">
+                and sex=#{stu.sex}
+            </if>
+        </where>
+    </select>
+    <select id="Delete" parameterType="int">
+				DELETE FROM student where id=#{id}
+		</select>
+    <select id="Insert" parameterType="Android.pojo.Student">
+        INSERT INTO student(code,name,age,cid,sex) values (#{stu.code},#{stu.name},#{stu.age},#{stu.cid},#{stu.sex})
+    </select>
+    <select id="Update" parameterType="Android.pojo.Student">
+        UPDATE student SET code=#{stu.code},name=#{stu.name},age=#{stu.age},cid=#{stu.cid},sex=#{stu.sex} WHERE
+        id=#{stu.id}   <!--1.按照主键的更新，创建一个2.使用map更新也有返回值-批量更新-->
+    </select>
+</mapper>
